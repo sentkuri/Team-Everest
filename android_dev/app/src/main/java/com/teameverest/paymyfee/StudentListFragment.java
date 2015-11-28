@@ -131,23 +131,13 @@ public class StudentListFragment extends Fragment {
         listView.setOnItemClickListener(new OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //L.e("Yes its clicked");
-
-                int videoPosnInList = position - 1;
-
 
                 Bundle bundle = new Bundle();
-                bundle.putString("videoId", vdoIds[videoPosnInList]);
-                bundle.putString("videoUrl", vdoUrls[videoPosnInList]);
-                bundle.putString("videoTitle", vdoTitle[videoPosnInList]);
-                bundle.putString("videoUrlToShare", vdoUrlToShare[videoPosnInList]);
-                bundle.putString("videoDesc", vdoDescription[videoPosnInList]);
-                bundle.putString("videoThumbnail", vdoThumbnailUrls[videoPosnInList]);
-                bundle.putString("videoDuration", vdoDuration[videoPosnInList]);
+                bundle.putString("studentId", vdoIds[position]);
 
                 //To Show Ads on first video/story hit
 
-                //((MainActivity) getActivity()).StudentDetailsFragment(bundle);
+                ((MainActivity) getActivity()).displayStudentDetailsFragment(bundle);
 
 
             }
@@ -211,17 +201,18 @@ public class StudentListFragment extends Fragment {
 
                                         //JSONObject vdoFields = eachVdoHits.getJSONObject("fields");
 
-                                        String id = eachStudent.getString("id");
+                                        int id = eachStudent.getInt("id");
                                         String firstname = eachStudent.getString("firstname");
                                         String lastname = eachStudent.getString("lastname");
-                                        String email = eachStudent.getString("email");
-                                        String contactnumber = eachStudent.getString("contactnumber");
+                                        String city = eachStudent.getString("city");
+                                        //String email = eachStudent.getString("email");
+                                        //String contactnumber = eachStudent.getString("contactnumber");
                                         String picture = eachStudent.getString("picture");
 
-                                        Constants.ARRAYSTUDENTID.add(id);
+                                        Constants.ARRAYSTUDENTID.add(id+"");
                                         Constants.ARRAYSTUDENTPICTUREURL.add(picture);
                                         Constants.ARRAYSTUDENTNAME.add(firstname + lastname);
-                                        Constants.ARRAYSTUDENTDESCRIPTION.add(contactnumber + "\n" + email);
+                                        Constants.ARRAYSTUDENTDESCRIPTION.add(city);
                                     }
 
                                     L.e("Got json url response, gonna parse");

@@ -3,20 +3,25 @@ package com.teameverest.paymyfee;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity {
+
+    FragmentManager fragmentManager;
+    FragmentTransaction transaction;
+    Fragment fragment = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -26,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+        displayStudentListFragment();
+
     }
 
     @Override
@@ -49,4 +56,36 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void displayStudentListFragment() {
+        // update the main content by replacing fragments
+        fragmentManager = getSupportFragmentManager();
+        transaction = fragmentManager.beginTransaction();
+        fragment = new StudentListFragment();
+
+        Bundle args = new Bundle();
+        if (args != null) {
+            args.putString("id", "1234");
+        }
+
+        if (fragment != null) {
+            fragment.setArguments(args);
+            transaction.replace(R.id.frame_container, fragment, "StudentListFragment");
+            //transaction.addToBackStack(fragName);
+            transaction.addToBackStack(null);
+            transaction.commit();
+        }
+    }
+
+    public void displayStudentDetailsFragment(Bundle bndlArgs) {
+        // update the main content by replacing fragments
+        transaction = getSupportFragmentManager().beginTransaction();
+        fragment = new StudentDetailsFragment();
+        fragment.setArguments(bndlArgs);
+
+        transaction.replace(R.id.frame_container, fragment, "StudentDetailsFragment");
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
+
 }

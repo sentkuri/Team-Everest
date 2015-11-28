@@ -30,7 +30,7 @@ public final class Constants {
     public static String[] STUDENTPICTUREURL = null;
     public static String[] STUDENTNAME = null;
     public static String[] STUDENTDESCRIPTION = null;
-    public static final String PAYMYFEEAPI = "http://chitraskitchen.xyz/students.json";
+    public static final String PAYMYFEEAPI = "http://192.168.116.255:3000/v1/recipients";
 
 
 

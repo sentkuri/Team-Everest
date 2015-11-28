@@ -10,14 +10,20 @@ CREATE TABLE receipient (
   address_line1 varchar(100) DEFAULT NULL,
   address_line2 varchar(100) DEFAULT NULL,
   city varchar(45) DEFAULT NULL,
+  area varchar(45) Default null,
   state varchar(45) DEFAULT NULL,
   pincode varchar(15) DEFAULT NULL,
   verified char(1) DEFAULT NULL,
-  PRIMARY KEY (id),
-  UNIQUE(contactnumber)
+  moneyrequired int ,
+  singleparent char(1),
+  marks int,
+  picture LONGTEXT,
+  PRIMARY KEY (id)
 );
 
-INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified) VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N');
+
+INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N',25000,'Y',90,"http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png");
 
 
 CREATE TABLE family (
@@ -34,18 +40,17 @@ CREATE TABLE family (
     FOREIGN KEY (receipientid) 
         REFERENCES receipient(id)
         ON DELETE CASCADE,
-  PRIMARY KEY (id),
-  UNIQUE(contactnumber)
-);
+  PRIMARY KEY (id));
+  
 INSERT INTO family (firstname, lastname, relationship, age, education, workingAs, yearlyIncome, comments) VALUES ('Senthilkumar', 'Vaithiyanathan', 'father',50,'12th', 'labour', 200000, 'None');
 
 
 create table user (
     userid int(10) NOT NULL AUTO_INCREMENT,
-    userType int(2) NOT NULL AUTO_INCREMENT,
-    username varchar(20) NOT NULL,
+    userType int(2) NOT NULL ,
+    username varchar(20) NOT NULL unique,
     password varchar(20) NOT NULL,
-    PRIMARY KEY (username)
+    PRIMARY KEY (userid)
 );
 
 create table school (
@@ -58,6 +63,41 @@ create table school (
     FOREIGN KEY (userid) 
         REFERENCES user(userid)
         ON DELETE CASCADE
+);
+
+create table ngo (
+    ngoid int(10) NOT NULL AUTO_INCREMENT,
+    ngoname  varchar(100) NOT NULL ,
+    fundinglimit int(8) NOT NULL,
+	category varchar(20),
+    PRIMARY KEY (ngoid)
+);
+
+create table fundingTable (
+    id int NOT NULL AUTO_INCREMENT,
+    studentid int,
+    ngoid int,
+    fundingplanned int(8),
+    PRIMARY KEY(id),
+    FOREIGN KEY (studentid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE,
+    FOREIGN KEY (ngoid) 
+        REFERENCES ngo(ngoid)
+        ON DELETE CASCADE    
+);
+
+create table interestedTable (
+    id int NOT NULL AUTO_INCREMENT,
+    studentid int,
+    ngoid int,    
+    PRIMARY KEY(id),
+    FOREIGN KEY (studentid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE,
+    FOREIGN KEY (ngoid) 
+        REFERENCES ngo(ngoid)
+        ON DELETE CASCADE           
 );
 
 

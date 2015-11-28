@@ -7,12 +7,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 /**
  * Created by harishannam on 28/11/15.
  */
 public class HomeScreen extends AppCompatActivity {
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +33,8 @@ public class HomeScreen extends AppCompatActivity {
         view_student.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(), "Open Students list fragment", Toast.LENGTH_LONG).show();
+               // displayFragment();
+                //Toast.makeText(getApplicationContext(), "Open Students list fragment", Toast.LENGTH_LONG).show();
             }
         });
     }
@@ -51,4 +54,6 @@ public class HomeScreen extends AppCompatActivity {
         }
         return (super.onOptionsItemSelected(menuItem));
     }
+
+
 }

@@ -64,7 +64,7 @@ public class PayMyFeeApplication extends android.app.Application {
         Parse.initialize(this, "wnM1uE4ZoQsdHA7NZYF0TPDVuM259eAEnWMaaZkA", "IDY3nhBDoLAfwh5hMYMBK8LDnxUeOVqEBqDUuSor");
 
 
-        PushService.subscribe(getApplicationContext(), "", MainActivity.class);
+        PushService.subscribe(getApplicationContext(), "PayMyFee", MainActivity.class);
 
 		/*
 		ParsePush.subscribeInBackground("", new SaveCallback() {

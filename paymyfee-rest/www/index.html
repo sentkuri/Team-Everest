@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="/www/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="/www/css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="/www/lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+<!--  BMO -->
+
+
+
+<!-- Controller -->
+
+
+
+<!-- Services -->
+<script src="/www/services/paymyfeeService.js"></script>
+<script src="/www/services/serviceInit.js"></script>
+
+<script src="/www/pages/NGO/NGOController.js"></script>
+<script src="/www/pages/login/loginController.js"></script>
+
+
+    <!-- your app's js -->    
+    <script src="/www/js/app.js"></script>
+    <script src="/www/js/controllers.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script> 
+  </head>
+
+  <body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+    <div ng-controller="ServiceInitCtrl"></div>
+  </body>
+</html>

@@ -6,6 +6,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+
+import com.android.volley.DefaultRetryPolicy;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.nostra13.universalimageloader.utils.L;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 
 /**
@@ -25,8 +36,13 @@ public class StudentDetailsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    public String studentId;
 
     private OnFragmentInteractionListener mListener;
+    EditText name;
+    EditText phonenumber;
+    EditText email;
+    EditText address;
 
     public StudentDetailsFragment() {
         // Required empty public constructor
@@ -56,6 +72,7 @@ public class StudentDetailsFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            studentId = getArguments().getString("studentId");
         }
     }
 
@@ -63,7 +80,14 @@ public class StudentDetailsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_student_details, container, false);
+        final View rootView = inflater.inflate(R.layout.fragment_student_details, container, false);
+        name = (EditText) rootView.findViewById(R.id.name);
+        phonenumber = (EditText) rootView.findViewById(R.id.phone);
+        email = (EditText) rootView.findViewById(R.id.email);
+        address = (EditText) rootView.findViewById(R.id.address);
+
+        makeJsonArrayRequest(studentId);
+        return rootView;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
@@ -72,7 +96,6 @@ public class StudentDetailsFragment extends Fragment {
             mListener.onFragmentInteraction(uri);
         }
     }
-
 
 
     @Override
@@ -94,5 +117,64 @@ public class StudentDetailsFragment extends Fragment {
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
+    }
+
+    public void makeJsonArrayRequest(final String studentId) {
+
+        //if (PayMyFeeApplication.getInstance().isOnline()) {
+
+        String urlToPayMyFeeApi = Constants.PAYMYFEEAPI + "/" + studentId;
+        JSONObject jsonRequest = null;
+        try {
+            //frameNoResults.setVisibility(View.GONE);
+            //Clear for Search results
+            jsonRequest = new JSONObject("{\"sort\" : [{\"post_date\" : {\"order\" : \"desc\"}}], \"size\" : 10, \"from\" : 1}");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest req = new JsonObjectRequest(Request.Method.GET, urlToPayMyFeeApi, jsonRequest,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+                        //Log.d(TAG, response.toString());
+                        try {
+                            JSONObject eachStudent = response.getJSONObject("student");
+
+
+                            int id = eachStudent.getInt("id");
+                            String firstnameVal = eachStudent.getString("firstname");
+                            String lastnameVal = eachStudent.getString("lastname");
+                            String cityVal = eachStudent.getString("city");
+                            String emailVal = eachStudent.getString("email");
+                            String contactnumber = eachStudent.getString("contactnumber");
+                            String picture = eachStudent.getString("picture");
+                            name.setText(firstnameVal + ", " + lastnameVal);
+                            email.setText(email.getText() + ": " + emailVal);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            L.e("Error while hitting ES JSON API: " + e.getMessage());
+                        }
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                L.e("VolleyErr" + error.getMessage());
+                //Toast.makeText(getApplicationContext(),
+                //      error.getMessage(), Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+        req.setRetryPolicy(new DefaultRetryPolicy(30000, 3, 1));
+        // Adding request to request queue
+        PayMyFeeApplication.getInstance().addToRequestQueue(req);
+        /*} else {
+            Toast.makeText(getActivity(),
+                    "Please check your internet connection", Toast.LENGTH_SHORT).show();
+        } */
     }
 }

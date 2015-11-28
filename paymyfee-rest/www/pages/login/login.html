@@ -1,0 +1,37 @@
+<ion-view title="Login">
+    <ion-content padding="true">
+    <div  ng-controller="loginController">
+         <div class="list">
+            <label class="item item-input">
+                <span class="input-label">Username</span>
+                <input type="text" ng-model="data.username">
+            </label>
+            <label class="item item-input">
+                <span class="input-label">Password</span>
+                <input type="password" ng-model="data.password">
+            </label>
+            <label class="item item-input item-select">
+                <div class="input-label">
+                    StakeHolder    
+                </div>
+                <select ng-model="data.stakeholder">
+                    <option value="1">NGO</option>
+                    <option selected value="2">School</option>
+                    <option value="3">Student</option>
+                    <option value="4">Donor</option>
+                </select>
+            </label>
+            <button class="button button-block button-positive" ng-click="login()">
+                Login
+            </button>
+            <button class="button button-block button-positive" ng-click="register()">
+                Sign up
+            </button>
+        </div>
+        </div>
+    </ion-content>	
+</ion-view>
+
+
+
+
