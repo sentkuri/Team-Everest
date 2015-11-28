@@ -10,13 +10,20 @@ CREATE TABLE receipient (
   address_line1 varchar(100) DEFAULT NULL,
   address_line2 varchar(100) DEFAULT NULL,
   city varchar(45) DEFAULT NULL,
+  area varchar(45) Default null,
   state varchar(45) DEFAULT NULL,
   pincode varchar(15) DEFAULT NULL,
   verified char(1) DEFAULT NULL,
+  moneyrequired int ,
+  singleparent char(1),
+  marks int,
+  picture LONGTEXT,
   PRIMARY KEY (id)
 );
 
-INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified) VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N');
+
+INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N',25000,'Y',90,"http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png");
 
 
 CREATE TABLE family (
