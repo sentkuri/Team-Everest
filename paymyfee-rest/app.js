@@ -32,5 +32,16 @@ app.get('/v1/recipients', function(req, res) {
             res.json(err);
         });
 });
-
+app.get('/v1/recipientById', function(req, res) {
+    //TODO Do request parames validation [srini]
+    var options = _.pick(req.query, ['id']);
+    logger.info('Options =>', options);
+    RecipientService.getRecipientById(options)
+        .then(function(recipient) {
+            res.json(recipient);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
 module.exports = app;
