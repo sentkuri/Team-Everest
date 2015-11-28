@@ -64,12 +64,15 @@ app.get('/v1/recipients/:id', function(req, res) {
     var options = _.pick(req.params,['id']);
     logger.info('Options =>', options);
     RecipientService.getRecipientById(options)
-      .then(function(recipient) {
-          res.json(recipient);
-      })
-      .catch(function(err) {
-          res.json(err);
-      });
+
+        .then(function(recipient) {
+
+            res.json({"student":recipient[0]});
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+
 });
 
 

@@ -48,10 +48,10 @@ function getRecipientByID(dbcp, options) {
 }
 
 function getRecipientsQuery(options) {
-    console.log('Options not working:'+options);
+
     var query = GET_RECIPIENTS;
-    console.log('Options not working:'+ !_.isUndefined(options));
-    if (!_.isUndefined(options)) {
+console.log(options+' is options');
+    if (!_.isUndefined(options.singleparent||options.moneyrequired||options.city||options.marks)) {
         query += ' where ';
     }
     if (!_.isUndefined(options.singleparent)) {
@@ -72,11 +72,9 @@ function getRecipientsQuery(options) {
 
 function getRecipientByIdQuery(options){
     var query = GET_RECIPIENTSBYID;
-    if (!_.isUndefined(options)) {
-        query += ' where ';
-    }
+
     if (!_.isUndefined(options.id)) {
-        query += " r.id = :id";
+        query += "where  r.id = :id";
         query += " and r.id = f.receipientid";
     }
     return query;
