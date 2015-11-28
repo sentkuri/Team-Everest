@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link href="/www/lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="/www/css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="/www/lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+
+<!--  BMO -->
+<script src="/www/BMO/tipsBMO.js"></script>
+<script src="/www/BMO/examBMO.js"></script>
+<script src="/www/BMO/solutionBMO.js"></script>
+<script src="/www/BMO/postBMO.js"></script>
+<script src="/www/BMO/settingsBMO.js"></script>
+<script src="/www/BMO/contributionBMO.js"></script>
+
+
+
+<!-- Controller -->
+<script src="/www/pages/tips/tipsController.js"></script>
+<script src="/www/pages/exam/examController.js"></script>
+<script src="/www/pages/solution/solutionController.js"></script>
+<script src="/www/pages/post/postController.js"></script>
+<script src="/www/pages/settings/settingsController.js"></script>
+<script src="/www/pages/contribution/contributionController.js"></script>
+
+
+
+<!-- Services -->
+<script src="/www/services/serviceInit.js"></script>
+<script src="/www/services/collageService.js"></script>
+
+    <!-- your app's js -->    
+    <script src="/www/js/app.js"></script>
+    <script src="/www/js/controllers.js"></script>
+    <script src="https://apis.google.com/js/client.js?onload=init"></script> 
+  </head>
+
+  <body ng-app="starter">
+    <ion-nav-view></ion-nav-view>
+    <div ng-controller="ServiceInitCtrl"></div>
+  </body>
+</html>
