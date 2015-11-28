@@ -71,30 +71,30 @@ create table ngo (
     fundinglimit int(8) NOT NULL,
 	category varchar(20),
     PRIMARY KEY (ngoid)
-)
+);
 
-create  fundingTable (
+create table fundingTable (
     id int NOT NULL AUTO_INCREMENT,
     studentid int,
     ngoid int,
-    fundingplanned int(8)
+    fundingplanned int(8),
+    PRIMARY KEY(id),
     FOREIGN KEY (studentid) 
         REFERENCES user(userid)
         ON DELETE CASCADE,
     FOREIGN KEY (ngoid) 
         REFERENCES ngo(ngoid)
-        ON DELETE CASCADE,        
-    
-)
+        ON DELETE CASCADE    
+);
 
 create table interestedTable (
     id int NOT NULL AUTO_INCREMENT,
     studentid int,
     ngoid int,    
+    PRIMARY KEY(id),
     FOREIGN KEY (studentid) 
         REFERENCES user(userid)
         ON DELETE CASCADE,
-        primary key (id),
     FOREIGN KEY (ngoid) 
         REFERENCES ngo(ngoid)
         ON DELETE CASCADE           
