@@ -54,16 +54,7 @@ app.get('/v1/recipients', function(req, res) {
 });
 
 
-app.post('/v1/recipients', function(req, res) {
 
-    RecipientService.getRecipients(options)
-        .then(function(recipient) {
-            res.json({"students":recipient});
-        })
-        .catch(function(err) {
-            res.json(err);
-        });
-});
 app.get('/v1/recipients/:id', function(req, res) {
     var options = _.pick(req.params,['id']);
     logger.info('Options =>', options);
@@ -79,6 +70,19 @@ app.get('/v1/recipients/:id', function(req, res) {
 
 });
 
+
+// Below API makes merchant to place one order request.
+app.post('/v1/recipients', function(req, res) {
+    var options = _.pick(req.body, ['firstname', 'lastname', 'email','contactnumber','address_line1','address_line2','city','state','pincode','verified','moneyrequired','singleparent','marks','picture']);
+    logger.info('Options =>', options);
+    RecipientService.createReceipient(options)
+        .then(function(results) {
+            res.json(results);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
+});
 
 
 module.exports = app;

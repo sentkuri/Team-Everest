@@ -6,7 +6,8 @@ var dbUtil = require('./DbUtil');
 // As we allow partial orders, Open orders are fetched based on status of each line_item.
 var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from receipient r';
 var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
-
+var INSERT_RECIPIENT='INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture) values ' +
+    '(:firstname, :lastname, :email, :contactnumber, :address_line1, :address_line2, :city, :state, :pincode, :verified,:moneyrequired,:singleparent,:marks,:picture)';
 var PREFIXES = {
     receipient: "r"
 };
@@ -15,10 +16,31 @@ var PREFIXES = {
 module.exports = function(dbcp) {
     return {
         getRecipients: _.partial(getAllRecipients, dbcp),
-        getRecipientById: _.partial(getRecipientByID,dbcp)
-
+        getRecipientById: _.partial(getRecipientByID,dbcp),
+        createReceipient: _.partial(createReceipient,dbcp)
     };
 };
+
+
+
+function createReceipient(dbcp, options) {
+
+    var orderReqId = 0;
+    logger.info("receipient info -------> ", options);
+
+    return new Promise(function(resolve, reject) {
+        dbUtil.executeQuery(dbcp, INSERT_RECIPIENT, options)
+            .then(function(results) {
+                res.json(results);
+            })
+
+            .catch(function(err) {
+                reject(err);
+            });
+    });
+}
+
+
 
 /**
  * Gets All Recipients
