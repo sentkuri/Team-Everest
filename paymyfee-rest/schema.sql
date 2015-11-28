@@ -40,6 +40,12 @@ CREATE TABLE family (
 INSERT INTO family (firstname, lastname, relationship, age, education, workingAs, yearlyIncome, comments) VALUES ('Senthilkumar', 'Vaithiyanathan', 'father',50,'12th', 'labour', 200000, 'None');
 
 
-
+create table user (
+    id int(10) NOT NULL AUTO_INCREMENT,
+    userType int(2) NOT NULL AUTO_INCREMENT,
+    username varchar(20) NOT NULL,
+    password varchar(20) NOT NULL,
+    PRIMARY KEY (username)
+);
 
 
