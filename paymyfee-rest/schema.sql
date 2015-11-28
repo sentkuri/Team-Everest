@@ -47,10 +47,10 @@ INSERT INTO family (firstname, lastname, relationship, age, education, workingAs
 
 create table user (
     userid int(10) NOT NULL AUTO_INCREMENT,
-    userType int(2) NOT NULL AUTO_INCREMENT,
-    username varchar(20) NOT NULL,
+    userType int(2) NOT NULL ,
+    username varchar(20) NOT NULL unique,
     password varchar(20) NOT NULL,
-    PRIMARY KEY (username)
+    PRIMARY KEY (userid)
 );
 
 create table school (
@@ -69,6 +69,7 @@ create table ngo (
     ngoid int(10) NOT NULL AUTO_INCREMENT,
     ngoname  varchar(100) NOT NULL ,
     fundinglimit int(8) NOT NULL,
+	category varchar(20),
     PRIMARY KEY (ngoid)
 )
 
@@ -86,17 +87,17 @@ create  fundingTable (
     
 )
 
-create  interestedTable (
+create table interestedTable (
     id int NOT NULL AUTO_INCREMENT,
     studentid int,
     ngoid int,    
     FOREIGN KEY (studentid) 
         REFERENCES user(userid)
         ON DELETE CASCADE,
+        primary key (id),
     FOREIGN KEY (ngoid) 
         REFERENCES ngo(ngoid)
         ON DELETE CASCADE           
-)
-
+);
 
 

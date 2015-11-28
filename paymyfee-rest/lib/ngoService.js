@@ -6,8 +6,8 @@ var dbUtil = require('./DbUtil');
 
 var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from receipient r';
 var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
-var INSERT_RECIPIENT='INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture) values ' +
-    '(:firstname, :lastname, :email, :contactnumber, :address_line1, :address_line2, :city, :state, :pincode, :verified,:moneyrequired,:singleparent,:marks,:picture)';
+var INSERT_NGO='INSERT INTO ngo (ngoname, fundinglimit, category) values (:ngoname, :fundinglimit, :category)';
+var REGISTER_USER='insert into user(userType,username,password) values(:userType,:username,:password)'
 var PREFIXES = {
     receipient: "r"
 };
@@ -17,23 +17,31 @@ module.exports = function(dbcp) {
     return {
         getRecipients: _.partial(getAllRecipients, dbcp),
         getRecipientById: _.partial(getRecipientByID,dbcp),
-        createReceipient: _.partial(createReceipient,dbcp)
+        createNGO: _.partial(createNGO,dbcp),
+        registerUser: _.partial(registerUser,dbcp)
     };
 };
 
 
-
-function createReceipient(dbcp, options) {
-
-    var orderReqId = 0;
-    logger.info("receipient info -------> ", options);
-
+function registerUser(dbcp, options) {
+    logger.info("user info -------> ", options);
     return new Promise(function(resolve, reject) {
-        dbUtil.executeQuery(dbcp, INSERT_RECIPIENT, options)
+        dbUtil.executeQuery(dbcp, REGISTER_USER, options)
             .then(function(results) {
                 res.json(results);
             })
-
+            .catch(function(err) {
+                reject(err);
+            });
+    });
+}
+function createNGO(dbcp, options) {
+    logger.info("NGO info -------> ", options);
+    return new Promise(function(resolve, reject) {
+        dbUtil.executeQuery(dbcp, INSERT_NGO, options)
+            .then(function(results) {
+                res.json(results);
+            })
             .catch(function(err) {
                 reject(err);
             });
@@ -72,7 +80,7 @@ function getRecipientByID(dbcp, options) {
 function getRecipientsQuery(options) {
 
     var query = GET_RECIPIENTS;
-console.log(options+' is options');
+    console.log(options+' is options');
     if (!_.isUndefined(options.singleparent||options.moneyrequired||options.city||options.marks)) {
         query += ' where ';
     }
