@@ -8,7 +8,7 @@ var logger = require('./Logger');
 var config = require('./config');
 var Err = require('./lib/Err');
 var ErrCodes = require('./lib/ErrCodes');
-
+var RecipientService = require('./lib/RecipientService')(config.dbcp);
 // for parsing application/json
 app.use(bodyParser.json());
 // for parsing application/x-www-form-urlencoded
@@ -20,9 +20,17 @@ app.use(bodyParser.urlencoded({
 /*----------------------------------------------------------------------------
  Below routes are REST API
 ----------------------------------------------------------------------------*/
-app.get('/v1/payMyFee', function(req, res) {
 
-    console.log('Reached Service');
+app.get('/v1/recipients', function(req, res) {
+    //TODO Do request parames validation [srini]
 
+    RecipientService.getRecipients()
+        .then(function(recipient) {
+            res.json(recipient);
+        })
+        .catch(function(err) {
+            res.json(err);
+        });
 });
+
 module.exports = app;

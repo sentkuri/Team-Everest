@@ -18,3 +18,46 @@ CREATE TABLE receipient (
 );
 
 INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified) VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N');
+
+
+CREATE TABLE family (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  firstname varchar(100) NOT NULL,
+  lastname varchar(100) NOT NULL,
+  relationship varchar(20) NOT NULL,
+  age int(3) NOT NULL,
+  education varchar(20) NOT NULL,
+  workingAs varchar(20) NOT NULL,
+  yearlyIncome int(7) NOT NULL,
+  comments varchar(300) NOT NULL,
+  receipientid INT,  
+    FOREIGN KEY (receipientid) 
+        REFERENCES receipient(id)
+        ON DELETE CASCADE,
+  PRIMARY KEY (id),
+  UNIQUE(contactnumber)
+);
+INSERT INTO family (firstname, lastname, relationship, age, education, workingAs, yearlyIncome, comments) VALUES ('Senthilkumar', 'Vaithiyanathan', 'father',50,'12th', 'labour', 200000, 'None');
+
+
+create table user (
+    userid int(10) NOT NULL AUTO_INCREMENT,
+    userType int(2) NOT NULL AUTO_INCREMENT,
+    username varchar(20) NOT NULL,
+    password varchar(20) NOT NULL,
+    PRIMARY KEY (username)
+);
+
+create table school (
+    schoolid int(10) NOT NULL AUTO_INCREMENT,
+    schoolName varchar(20) NOT NULL ,
+    schooladdress varchar(20) NOT NULL,
+    contactnumber varchar(12) NOT NULL ,
+    userid int,
+    PRIMARY KEY (schoolid),
+    FOREIGN KEY (userid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE
+);
+
+

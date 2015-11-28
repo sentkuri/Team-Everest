@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
+
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="140dp"
+        android:layout_height="88dp"
+        android:layout_marginBottom="13dip"
+        android:layout_marginLeft="13dip"
+        android:layout_marginStart="13dip"
+        android:layout_marginTop="13dip"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/descr_image"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_stub" />
+
+    <TextView
+        android:id="@+id/text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/image"
+        android:layout_gravity="start|center_vertical"
+        android:layout_marginLeft="9dip"
+        android:layout_marginStart="9dip"
+        android:layout_toRightOf="@+id/image"
+        android:layout_toEndOf="@+id/image"
+        android:text="@string/student_name"
+        android:textColor="@android:color/black"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/textVwDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/text"
+        android:layout_alignStart="@+id/text"
+        android:layout_below="@id/text"
+        android:layout_gravity="start|center_vertical"
+        android:text="@string/student_details"
+        android:textColor="#50000000"
+        android:textSize="13sp" />
+
+    <!-- <ImageButton
+         android:id="@+id/image_details"
+         android:layout_width="50dip"
+         android:layout_height="wrap_content"
+         android:layout_alignParentEnd="true"
+         android:layout_alignParentRight="true"
+         android:layout_alignParentTop="true"
+         android:adjustViewBounds="true"
+         android:background="?android:selectableItemBackground"
+         android:contentDescription="@string/descr_image"
+         android:src="@drawable/download_vdo" />
+     -->
+
+
+
+
+
+
+
+
+</RelativeLayout>
+
