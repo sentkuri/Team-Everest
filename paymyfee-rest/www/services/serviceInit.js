@@ -3,20 +3,14 @@
             //window.init();
     } 
 
-    var app = angular.module('ServiceInitModule', [ "collageServiceModule"]);
+    var app = angular.module('ServiceInitModule', [ ]);
     
     app.controller
         ('ServiceInitCtrl', 
-            ['$scope','$rootScope','$window',"collageService",
-                function($scope,$rootScope, $window, collageService) {
+            ['$scope','$rootScope','$window',
+                function($scope,$rootScope, $window) {
                     $window.init= function() {     
-                    	$rootScope.collageService_init=false;
-                    	collageService.init().then(function(){
-                            console.log("collageService Service Initialized");
-                            $rootScope.collageService_init=true;
-                            $rootScope.$broadcast('collageService', 'success');
-                            
-                        });
+                    	
                     }            
                 }
             ]
