@@ -22,6 +22,7 @@ app.use(bodyParser.urlencoded({
 ----------------------------------------------------------------------------*/
 app.get('/v1/payMyFee', function(req, res) {
 
+    console.log('Reached Service');
 
 });
 module.exports = app;
