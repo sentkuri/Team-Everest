@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
-        displayFragment();
+        displayStudentListFragment();
 
     }
 
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void displayFragment() {
+    public void displayStudentListFragment() {
         // update the main content by replacing fragments
         fragmentManager = getSupportFragmentManager();
         transaction = fragmentManager.beginTransaction();
@@ -75,6 +75,17 @@ public class MainActivity extends AppCompatActivity {
             transaction.addToBackStack(null);
             transaction.commit();
         }
+    }
+
+    public void displayStudentDetailsFragment(Bundle bndlArgs) {
+        // update the main content by replacing fragments
+        transaction = getSupportFragmentManager().beginTransaction();
+        fragment = new StudentDetailsFragment();
+        fragment.setArguments(bndlArgs);
+
+        transaction.replace(R.id.frame_container, fragment, "StudentDetailsFragment");
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }
