@@ -22,19 +22,19 @@ app.use(bodyParser.urlencoded({
 ----------------------------------------------------------------------------*/
 
 app.get('/v1/recipients', function(req, res) {
-    //TODO Do request parames validation [srini]
+    var options = _.pick(req.query, ['singleparent','moneyrequired','marks','city']);
+    logger.info('Options =>', options);
 
-    RecipientService.getRecipients()
+    RecipientService.getRecipients(options)
         .then(function(recipient) {
-            res.json(recipient);
+            res.json({"students":recipient});
         })
         .catch(function(err) {
             res.json(err);
         });
 });
-app.get('/v1/recipientById', function(req, res) {
-    //TODO Do request parames validation [srini]
-    var options = _.pick(req.query, ['id']);
+app.get('/v1/recipients/:id', function(req, res) {
+    var options = _.pick(req.params,['id']);
     logger.info('Options =>', options);
     RecipientService.getRecipientById(options)
         .then(function(recipient) {
@@ -44,4 +44,7 @@ app.get('/v1/recipientById', function(req, res) {
             res.json(err);
         });
 });
+
+
+
 module.exports = app;

@@ -4,7 +4,7 @@ var logger = require('../Logger');
 var dbUtil = require('./DbUtil');
 
 // As we allow partial orders, Open orders are fetched based on status of each line_item.
-var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified from receipient r';
+var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from receipient r';
 var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
 
 var PREFIXES = {
@@ -48,7 +48,25 @@ function getRecipientByID(dbcp, options) {
 }
 
 function getRecipientsQuery(options) {
+    console.log('Options not working:'+options);
     var query = GET_RECIPIENTS;
+    console.log('Options not working:'+ !_.isUndefined(options));
+    if (!_.isUndefined(options)) {
+        query += ' where ';
+    }
+    if (!_.isUndefined(options.singleparent)) {
+        query += " r.singleparent = :singleparent";
+
+    }
+    if (!_.isUndefined(options.moneyrequired)) {
+        query += " and r.moneyrequired <= :moneyrequired";
+    }
+    if (!_.isUndefined(options.city)) {
+        query += " and r.city = :city";
+    }
+    if (!_.isUndefined(options.marks)) {
+        query += " and r.marks > :marks";
+    }
     return query;
 }
 
