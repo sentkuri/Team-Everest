@@ -6,7 +6,7 @@ CREATE TABLE receipient (
   firstname varchar(100) NOT NULL,
   lastname varchar(100) NOT NULL,
   email varchar(100) NOT NULL,
-  contactnumber int(10) NOT NULL,
+  contactnumber varchar(12) NOT NULL,
   address_line1 varchar(100) DEFAULT NULL,
   address_line2 varchar(100) DEFAULT NULL,
   city varchar(45) DEFAULT NULL,
@@ -17,3 +17,4 @@ CREATE TABLE receipient (
   UNIQUE(contactnumber)
 );
 
+INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified) VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N');
