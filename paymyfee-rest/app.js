@@ -20,6 +20,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
+/*
 app.engine('dust', dust.engine({
     // Use dustjs-helpers
     useHelpers: true
@@ -27,14 +28,17 @@ app.engine('dust', dust.engine({
 
 app.set('view engine', 'dust');
 app.set('views', path.resolve(__dirname, './views'));
-
-
+*/
+app.set('views', __dirname + '/www');
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'ejs');
+app.use("/www", express.static(__dirname + '/www'));
 /*----------------------------------------------------------------------------
  Below routes are REST API
 ----------------------------------------------------------------------------*/
 app.get('/students', function(req, res){
-
-    res.render('index',{title: 'Hello'});
+    console.log('Request');
+    res.render('index.html');
 });
 
 app.get('/v1/recipients', function(req, res) {
