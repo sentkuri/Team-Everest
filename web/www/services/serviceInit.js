@@ -1,6 +1,6 @@
            
     function init() {        
-            window.init();
+            //window.init();
     } 
 
     var app = angular.module('ServiceInitModule', [ "collageServiceModule"]);
