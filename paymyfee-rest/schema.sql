@@ -41,11 +41,23 @@ INSERT INTO family (firstname, lastname, relationship, age, education, workingAs
 
 
 create table user (
-    id int(10) NOT NULL AUTO_INCREMENT,
+    userid int(10) NOT NULL AUTO_INCREMENT,
     userType int(2) NOT NULL AUTO_INCREMENT,
     username varchar(20) NOT NULL,
     password varchar(20) NOT NULL,
     PRIMARY KEY (username)
+);
+
+create table school (
+    schoolid int(10) NOT NULL AUTO_INCREMENT,
+    schoolName varchar(20) NOT NULL ,
+    schooladdress varchar(20) NOT NULL,
+    contactnumber varchar(12) NOT NULL ,
+    userid int,
+    PRIMARY KEY (schoolid),
+    FOREIGN KEY (userid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE
 );
 
 
