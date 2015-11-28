@@ -211,17 +211,18 @@ public class StudentListFragment extends Fragment {
 
                                         //JSONObject vdoFields = eachVdoHits.getJSONObject("fields");
 
-                                        String id = eachStudent.getString("id");
+                                        int id = eachStudent.getInt("id");
                                         String firstname = eachStudent.getString("firstname");
                                         String lastname = eachStudent.getString("lastname");
-                                        String email = eachStudent.getString("email");
-                                        String contactnumber = eachStudent.getString("contactnumber");
+                                        String city = eachStudent.getString("city");
+                                        //String email = eachStudent.getString("email");
+                                        //String contactnumber = eachStudent.getString("contactnumber");
                                         String picture = eachStudent.getString("picture");
 
-                                        Constants.ARRAYSTUDENTID.add(id);
+                                        Constants.ARRAYSTUDENTID.add(id+"");
                                         Constants.ARRAYSTUDENTPICTUREURL.add(picture);
                                         Constants.ARRAYSTUDENTNAME.add(firstname + lastname);
-                                        Constants.ARRAYSTUDENTDESCRIPTION.add(contactnumber + "\n" + email);
+                                        Constants.ARRAYSTUDENTDESCRIPTION.add(city);
                                     }
 
                                     L.e("Got json url response, gonna parse");
