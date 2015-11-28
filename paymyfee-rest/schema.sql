@@ -30,6 +30,10 @@ CREATE TABLE family (
   workingAs varchar(20) NOT NULL,
   yearlyIncome int(7) NOT NULL,
   comments varchar(300) NOT NULL,
+  receipientid INT,  
+    FOREIGN KEY (receipientid) 
+        REFERENCES receipient(id)
+        ON DELETE CASCADE,
   PRIMARY KEY (id),
   UNIQUE(contactnumber)
 );
