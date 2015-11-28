@@ -17,3 +17,17 @@ CREATE TABLE receipient (
   UNIQUE(contactnumber)
 );
 
+CREATE TABLE family (
+  id int(10) NOT NULL AUTO_INCREMENT,
+  firstname varchar(100) NOT NULL,
+  lastname varchar(100) NOT NULL,
+  relationship varchar(20) NOT NULL,
+  age int(3) NOT NULL,
+  education varchar(20) NOT NULL,
+  workingAs varchar(20) NOT NULL,
+  yearlyIncome int(7) NOT NULL,
+  comments varchar(300) NOT NULL,
+  PRIMARY KEY (id),
+  UNIQUE(contactnumber)
+);
+
