@@ -60,4 +60,38 @@ create table school (
         ON DELETE CASCADE
 );
 
+create table ngo (
+    ngoid int(10) NOT NULL AUTO_INCREMENT,
+    ngoname  varchar(100) NOT NULL ,
+    fundinglimit int(8) NOT NULL,
+    PRIMARY KEY (ngoid)
+)
+
+create  fundingTable (
+    id int NOT NULL AUTO_INCREMENT,
+    studentid int,
+    ngoid int,
+    fundingplanned int(8)
+    FOREIGN KEY (studentid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE,
+    FOREIGN KEY (ngoid) 
+        REFERENCES ngo(ngoid)
+        ON DELETE CASCADE,        
+    
+)
+
+create  interestedTable (
+    id int NOT NULL AUTO_INCREMENT,
+    studentid int,
+    ngoid int,    
+    FOREIGN KEY (studentid) 
+        REFERENCES user(userid)
+        ON DELETE CASCADE,
+    FOREIGN KEY (ngoid) 
+        REFERENCES ngo(ngoid)
+        ON DELETE CASCADE           
+)
+
+
 
