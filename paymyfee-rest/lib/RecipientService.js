@@ -26,15 +26,13 @@ function getAllRecipients(dbcp, options) {
     return new Promise(function(resolve, reject) {
         dbUtil.executeQuery(dbcp, getRecipientsQuery(options), options)
             .then(function(rows) {
-                resolve(mapOrderRows(rows, PREFIXES));
+                resolve( _.pluck(rows, PREFIXES.receipient));
             })
             .catch(function(err) {
                 reject(err);
             });
     });
 }
-
-
 
 
 function getRecipientsQuery(options) {
@@ -91,10 +89,11 @@ function getRecipientsQuery(options) {
     return orderMap;
 }*/
 function mapOrderRows(rows, prefixes) {
-    var finalResult = _.takeWhile(rows, function(row){
-        console.log(row);
+    var finalResult = _.pluck(rows, prefixes.receipient);
+    /*var finalResult = _.takeWhile(rows, function(row){
+        console.log(":::"+JSON.stringify(row[prefixes.receipient]));
        return row[prefixes.receipient];
-    });
+    });*/
     console.log(JSON.stringify(finalResult));
     return finalResult;
     /*var orderMap = _.reduce(rows, function(map, row) {
