@@ -52,7 +52,7 @@ app.get('/v1/recipients', function(req, res) {
             res.json(recipient);
         })
         .catch(function(err) {
-
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
@@ -65,10 +65,11 @@ app.get('/v1/recipients/:id', function(req, res) {
     RecipientService.getRecipientById(options)
 
         .then(function(recipient) {
-
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json({"student":recipient[0]});
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 
@@ -81,9 +82,11 @@ app.post('/v1/recipients', function(req, res) {
     logger.info('Options =>', options);
     RecipientService.createReceipient(options)
         .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(results);
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
@@ -94,9 +97,11 @@ app.post('/v1/ngos', function(req, res) {
     logger.info('Options =>', options);
     ngoService.createNGO(options)
         .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(results);
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
@@ -106,9 +111,11 @@ app.post('/v1/register', function(req, res) {
     logger.info('Options =>', options);
     ngoService.registerUser(options)
         .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(results);
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
