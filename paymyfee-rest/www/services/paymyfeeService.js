@@ -23,7 +23,7 @@
         
         this.login = function(data){
               var deferred = $q.defer(); 
-                    var url= this.serverURLPrefix+"register";              
+                    var url= this.serverURLPrefix+"login";              
                     $http({
                         method: 'POST',
                         data: data,
@@ -32,29 +32,31 @@
                         }).then(function successCallback(response) {
                             console.log(response);
                             alert(response);
-                            deferred.resolve(respone);
+                            deferred.resolve(response);
                         }, function errorCallback(response) {
                             console.log(response);
-                            deferred.reject(respone);
+                            deferred.reject(response);
                         });
                 return deferred.promise;  
         }
         this.register = function(data){
             var deferred = $q.defer(); 
                     var url= this.serverURLPrefix+"register";              
-                    $http({
+                     $http({
                         method: 'POST',
                         data:  JSON.stringify(data),
                         dataType: 'json', 
                         crossDomain:true,
+                        headers: { "Content-Type": "application/json" },
                         url: url
                         }).then(function successCallback(response) {
                             console.log(response);
-                            alert(response);
-                            deferred.resolve(respone);
+                            alert("Accept");
+                            deferred.resolve(response);
                         }, function errorCallback(response) {
                             console.log(response);
-                            deferred.reject(respone);
+                              alert("Reject");
+                            deferred.reject(response);
                         });
                 return deferred.promise;  
         }

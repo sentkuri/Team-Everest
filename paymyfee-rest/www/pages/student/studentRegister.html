@@ -1,14 +1,91 @@
 <ion-view title="Login">
     <ion-content padding="true">
-         <div class="list">
-            <label class="item item-input">
-                <span class="input-label">NGO Name</span>
-                <input type="text">
+    <div class="card">
+        <div class="item">
+             <div class="list">
+                <label class="item item-input">
+                    <span class="input-label">First Name</span>
+                    <input type="text" ng-model="data.firstname">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Last Name</span>
+                    <input type="text" ng-model="data.lastname">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Email</span>
+                    <input type="text" ng-model="data.email">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Contact Number</span>
+                    <input type="text"  ng-model="data.contactnumber">
+                </label>
+        </div>
+    </div>  
+<div class="card">
+        <div class="item">
+        <label class="item item-input">
+                <span class="input-label">Funding Required</span>
+                <input type="text"  ng-model="data.moneyrequired">
             </label>
-            <label class="item item-input">
-                <span class="input-label">Funding for the Year</span>
-                <input type="text">
+		
+        <label class="item item-input">
+                <span class="input-label">singleparent</span>
+                <input type="text"  ng-model="data.singleparent">
             </label>
+		
+        <label class="item item-input">
+                <span class="input-label">Mark</span>
+                <input type="text"  ng-model="data.marks">
+            </label>
+		</div>
+        </div>    
+            		
+		
+        <label class="item item-input">
+                <span class="input-label">Door number</span>
+                <input type="text"  ng-model="data.address_line1">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">Street</span>
+                <input type="text"  ng-model="data.address_line2">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">City</span>
+                <input type="text"  ng-model="data.city">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">area</span>
+                <input type="text"  ng-model="data.area">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">State</span>
+                <input type="text"  ng-model="data.state">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">Contact Number</span>
+                <input type="text"  ng-model="data.contactnumber">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">pincode</span>
+                <input type="text"  ng-model="data.pincode">
+            </label>
+		
+        <label class="item item-input">
+                <span class="input-label">picture url</span>
+                <input type="text"  ng-model="data.picture">
+            </label>
+
+            
+            
+            
+            
+            
             <button class="button button-block button-positive">
                 Save
             </button>
@@ -18,7 +95,4 @@
         </div>
     </ion-content>	
 </ion-view>
-
-
-
 
