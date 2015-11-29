@@ -7,9 +7,11 @@ var dbUtil = require('./DbUtil');
 var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from receipient r';
 var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
 var INSERT_NGO='INSERT INTO ngo (ngoname, fundinglimit, category) values (:ngoname, :fundinglimit, :category)';
-var REGISTER_USER='insert into user(userType,username,password) values(:userType,:username,:password)'
+var REGISTER_USER='insert into user(userType,username,password) values(:userType,:username,:password)';
+var LOGIN_USER='select userType from user where username=:username and password=:password';
 var PREFIXES = {
-    receipient: "r"
+    receipient: "r",
+    user:"u"
 };
 
 
@@ -18,9 +20,26 @@ module.exports = function(dbcp) {
         getRecipients: _.partial(getAllRecipients, dbcp),
         getRecipientById: _.partial(getRecipientByID,dbcp),
         createNGO: _.partial(createNGO,dbcp),
-        registerUser: _.partial(registerUser,dbcp)
+        registerUser: _.partial(registerUser,dbcp),
+        loginUser: _.partial(loginUser,dbcp)
     };
 };
+
+
+function loginUser(dbcp, options) {
+    logger.info("user info -------> ", options);
+    return new Promise(function(resolve, reject) {
+        dbUtil.executeQuery(dbcp, LOGIN_USER, options)
+            .then(function(results) {
+                console.log('ans came');
+              //  res.json(results);
+                resolve( _.pluck(rows, PREFIXES.user));
+            })
+            .catch(function(err) {
+                reject(err);
+            });
+    });
+}
 
 
 function registerUser(dbcp, options) {

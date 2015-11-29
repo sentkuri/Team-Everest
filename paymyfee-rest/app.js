@@ -49,7 +49,7 @@ app.get('/v1/recipients', function(req, res) {
     RecipientService.getRecipientById(options)
         .then(function(recipient) {
             res.setHeader("Access-Control-Allow-Origin","*");
-            res.json(recipient);
+            res.json({"students":recipient});
         })
         .catch(function(err) {
             res.setHeader("Access-Control-Allow-Origin","*");
@@ -120,6 +120,21 @@ app.post('/v1/register', function(req, res) {
         });
 });
 
+
+app.post('/v1/login',function(req,res){
+    var options= _.pick(req.body,['username','password']);
+    logger.info(options);
+    ngoService.loginUser(options)
+        .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            console.log('results at tend'+results);
+            res.json(results);
+        })
+        .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(err);
+        });
+});
 
 app.post('/v1/interests',function(req,res){
     var options= _.pick(req.body,['studentid','ngoid']);
