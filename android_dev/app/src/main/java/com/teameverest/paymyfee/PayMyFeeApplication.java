@@ -34,7 +34,7 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 import com.nostra13.universalimageloader.core.assist.QueueProcessingType;
 import com.parse.Parse;
-import com.parse.PushService;
+import com.parse.ParseInstallation;
 
 
 public class PayMyFeeApplication extends android.app.Application {
@@ -62,9 +62,8 @@ public class PayMyFeeApplication extends android.app.Application {
 
         // Initialize the Parse SDK.
         Parse.initialize(this, "wnM1uE4ZoQsdHA7NZYF0TPDVuM259eAEnWMaaZkA", "IDY3nhBDoLAfwh5hMYMBK8LDnxUeOVqEBqDUuSor");
+        ParseInstallation.getCurrentInstallation().saveInBackground();
 
-
-        PushService.subscribe(getApplicationContext(), "PayMyFee", MainActivity.class);
 
 		/*
 		ParsePush.subscribeInBackground("", new SaveCallback() {

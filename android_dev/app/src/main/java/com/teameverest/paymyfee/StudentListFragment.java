@@ -86,6 +86,7 @@ public class StudentListFragment extends Fragment {
 
     Boolean flag_loading = true;
 
+    String queryString = "";
     protected ListView listView;
     protected LinearLayout linear_layout_cat_vdo_title;
     protected TextView txtCategoryTitle;
@@ -113,6 +114,9 @@ public class StudentListFragment extends Fragment {
         LayoutInflater layoutInflater = (LayoutInflater) getActivity().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         footer = layoutInflater.inflate(R.layout.list_footer_view, null);
 
+        if (getArguments() != null) {
+            queryString = getArguments().getString("querystring");
+        }
         setRetainInstance(true);
 
     }
@@ -124,7 +128,8 @@ public class StudentListFragment extends Fragment {
         listView = (ListView) rootView.findViewById(android.R.id.list);
 
 
-
+        Constants.WHICHFRAGMENT = "LIST";
+        Constants.ClearStudentList();
 
 
         //L.e("CreateView called");
@@ -171,7 +176,7 @@ public class StudentListFragment extends Fragment {
 
         //if (PayMyFeeApplication.getInstance().isOnline()) {
 
-            String urlToPayMyFeeApi = Constants.PAYMYFEEAPI;
+            String urlToPayMyFeeApi = Constants.PAYMYFEEAPI + queryString;
             flag_loading = true;
             setIsLoading(flag_loading);
             JSONObject jsonRequest = null;
@@ -211,7 +216,7 @@ public class StudentListFragment extends Fragment {
 
                                         Constants.ARRAYSTUDENTID.add(id+"");
                                         Constants.ARRAYSTUDENTPICTUREURL.add(picture);
-                                        Constants.ARRAYSTUDENTNAME.add(firstname + lastname);
+                                        Constants.ARRAYSTUDENTNAME.add(firstname + ", " + lastname);
                                         Constants.ARRAYSTUDENTDESCRIPTION.add(city);
                                     }
 

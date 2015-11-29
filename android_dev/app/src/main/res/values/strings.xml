@@ -6,4 +6,6 @@
     <string name="descr_image">Image</string>
     <string name="student_name">Mr. T.R. Saravanan</string>
     <string name="student_details">Looking for College Fees</string>
+    <string name="bycity">Get By City</string>
+    <string name="by_desc">Get the list of students by your city</string>
 </resources>

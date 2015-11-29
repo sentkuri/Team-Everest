@@ -30,7 +30,9 @@ public final class Constants {
     public static String[] STUDENTPICTUREURL = null;
     public static String[] STUDENTNAME = null;
     public static String[] STUDENTDESCRIPTION = null;
-    public static final String PAYMYFEEAPI = "http://192.168.116.255:3000/v1/recipients";
+    public static final String PAYMYFEEAPI = "http://52.27.127.152/v1/recipients";
+
+    public static String WHICHFRAGMENT = "LIST";
 
 
 
@@ -53,10 +55,13 @@ public final class Constants {
         public static final boolean DEVELOPER_MODE = false;
     }
 
-    public static class Extra {
-        public static final String FRAGMENT_INDEX = "com.nostra13.example.weatherbabe.FRAGMENT_INDEX";
-        public static final String IMAGE_POSITION = "com.nostra13.example.weatherbabe.IMAGE_POSITION";
+    public static void ClearStudentList() {
+        ARRAYSTUDENTID.clear();
+        ARRAYSTUDENTPICTUREURL.clear();
+        ARRAYSTUDENTNAME.clear();
+        ARRAYSTUDENTDESCRIPTION.clear();
     }
+
 
 
 }

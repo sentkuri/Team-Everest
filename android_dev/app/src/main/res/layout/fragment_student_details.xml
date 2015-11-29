@@ -25,8 +25,8 @@
 
             <ImageView
                 android:id="@+id/imageViewStudent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
                 android:src="@drawable/ic_launcher" />
 
 
@@ -51,6 +51,13 @@
                 android:layout_height="wrap_content"
                 android:hint="Mobile" />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Address"
+                android:textColor="#000"
+                android:textSize="18sp"
+                android:textStyle="bold" />
             <EditText
                 android:id="@+id/address"
                 android:layout_width="match_parent"
@@ -89,7 +96,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="City / Town / Village" />
+                    android:hint="City" />
 
                 <EditText
                     android:id="@+id/pincode"
@@ -120,7 +127,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="Parent Status: "
+                android:text="Single Parent? "
                 android:textColor="#000"
                 android:textSize="18sp" />
 
@@ -201,7 +208,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:hint="City / Town / Village" />
+                    android:hint="City" />
 
                 <EditText
                     android:layout_width="0dp"

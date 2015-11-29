@@ -1,13 +1,11 @@
 package com.teameverest.paymyfee;
 
-import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -27,12 +25,12 @@ import org.json.JSONObject;
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link StudentDetailsFragment.OnFragmentInteractionListener} interface
+ * {@link AddStudentDetailsFragment.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link StudentDetailsFragment#newInstance} factory method to
+ * Use the {@link AddStudentDetailsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class StudentDetailsFragment extends Fragment {
+public class AddStudentDetailsFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -53,9 +51,10 @@ public class StudentDetailsFragment extends Fragment {
     EditText editTextCity;
     EditText editTextPinCode;
     TextView textViewParentStatus;
+
     ImageView pict;
 
-    public StudentDetailsFragment() {
+    public AddStudentDetailsFragment() {
         // Required empty public constructor
     }
 
@@ -68,8 +67,8 @@ public class StudentDetailsFragment extends Fragment {
      * @return A new instance of fragment StudentDetailsFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static StudentDetailsFragment newInstance(String param1, String param2) {
-        StudentDetailsFragment fragment = new StudentDetailsFragment();
+    public static AddStudentDetailsFragment newInstance(String param1, String param2) {
+        AddStudentDetailsFragment fragment = new AddStudentDetailsFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -90,17 +89,10 @@ public class StudentDetailsFragment extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-        final InputMethodManager imm = (InputMethodManager) getActivity().getSystemService(Context.INPUT_METHOD_SERVICE);
-        imm.hideSoftInputFromWindow(getView().getWindowToken(), 0);
-    }
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        final View rootView = inflater.inflate(R.layout.fragment_student_details, container, false);
+        final View rootView = inflater.inflate(R.layout.add_student, container, false);
         name = (EditText) rootView.findViewById(R.id.name);
         phonenumber = (EditText) rootView.findViewById(R.id.phone);
         email = (EditText) rootView.findViewById(R.id.email);
@@ -111,7 +103,7 @@ public class StudentDetailsFragment extends Fragment {
         textViewParentStatus = (TextView) rootView.findViewById(R.id.parent_status);
         pict = (ImageView) rootView.findViewById(R.id.imageViewStudent);
 
-        Constants.WHICHFRAGMENT = "DETAILS";
+        Constants.WHICHFRAGMENT = "ADD";
         makeJsonArrayRequest(studentId);
         return rootView;
     }
@@ -172,10 +164,10 @@ public class StudentDetailsFragment extends Fragment {
                             int id = eachStudent.getInt("id");
                             String firstnameVal = eachStudent.getString("firstname");
                             String lastnameVal = eachStudent.getString("lastname");
-                            String cityVal = eachStudent.getString("city");
                             String emailVal = eachStudent.getString("email");
                             String add_1 = eachStudent.getString("address_line1");
                             String add_2 = eachStudent.getString("address_line2");
+                            String cityVal = eachStudent.getString("city");
                             String state = eachStudent.getString("state");
                             String pincode = eachStudent.getString("pincode");
                             String moneyreq = eachStudent.getString("moneyrequired");
@@ -190,6 +182,8 @@ public class StudentDetailsFragment extends Fragment {
                             editTextstate.setText(state);
                             editTextPinCode.setText(pincode);
                             textViewParentStatus.setText("Single Parent? " + issingleparent);
+
+
                             ImageLoader.getInstance().displayImage(picture, pict);
 
 

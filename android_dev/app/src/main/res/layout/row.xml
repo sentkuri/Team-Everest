@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:descendantFocusability="blocksDescendants">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="13dip"
+        android:layout_marginTop="13dip"
+        android:adjustViewBounds="true"
+        android:contentDescription="@string/descr_image"
+        android:layout_marginLeft="21dp"
+        android:scaleType="fitStart"
+        android:src="@drawable/home_all_icon" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_gravity="start|center_horizontal"
+        android:text="@string/bycity"
+        android:textColor="#637ea3"
+        android:textSize="19sp"
+        android:textStyle="bold"
+        android:layout_alignTop="@+id/imageView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+    <TextView
+        android:id="@+id/textViewDesc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="21dp"
+        android:layout_gravity="start|center_vertical"
+        android:text="@string/by_desc"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:layout_below="@+id/textView"
+        android:layout_toRightOf="@+id/imageView"
+        android:layout_toEndOf="@+id/imageView" />
+
+
+</RelativeLayout>
+
