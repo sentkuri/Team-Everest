@@ -74,21 +74,33 @@ function getRecipientsQuery(options) {
 
     var query = GET_RECIPIENTS;
 console.log(options+' is options');
+    var needAnd = false;
     if (!_.isUndefined(options.singleparent) || !_.isUndefined(options.moneyrequired) || !_.isUndefined(options.city) || !_.isUndefined(options.marks)) {
         query += ' where ';
     }
     if (!_.isUndefined(options.singleparent)) {
         query += " lower(r.singleparent) = lower(:singleparent)";
-
+        needAnd = true;
     }
     if (!_.isUndefined(options.moneyrequired)) {
-        query += " and r.moneyrequired <= :moneyrequired";
+        if(needAnd){
+            query += ' and ';
+        }
+        query += " r.moneyrequired <= :moneyrequired";
+        needAnd = true;
     }
     if (!_.isUndefined(options.city)) {
-        query += " and lower(r.city) = lower(:city)";
+        if(needAnd){
+            query += ' and ';
+        }
+        query += " lower(r.city) = lower(:city)";
+        needAnd = true;
     }
     if (!_.isUndefined(options.marks)) {
-        query += " and r.marks > :marks";
+        if(needAnd){
+            query += ' and ';
+        }
+        query += " r.marks > :marks";
     }
     return query;
 }
