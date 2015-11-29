@@ -9,6 +9,8 @@ var config = require('./config');
 var Err = require('./lib/Err');
 var ErrCodes = require('./lib/ErrCodes');
 var RecipientService = require('./lib/RecipientService')(config.dbcp);
+var ngoService = require('./lib/ngoService')(config.dbcp);
+
 var dust = require('express-dustjs');
 var path = require('path');
 
@@ -46,9 +48,11 @@ app.get('/v1/recipients', function(req, res) {
     logger.info('Options =>', options); 
     RecipientService.getRecipientById(options)
         .then(function(recipient) {
-            res.json(recipient);
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json({"students":recipient});
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
@@ -61,28 +65,81 @@ app.get('/v1/recipients/:id', function(req, res) {
     RecipientService.getRecipientById(options)
 
         .then(function(recipient) {
-
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json({"student":recipient[0]});
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 
 });
 
 
-// Below API makes merchant to place one order request.
+
 app.post('/v1/recipients', function(req, res) {
     var options = _.pick(req.body, ['firstname', 'lastname', 'email','contactnumber','address_line1','address_line2','city','state','pincode','verified','moneyrequired','singleparent','marks','picture']);
     logger.info('Options =>', options);
     RecipientService.createReceipient(options)
         .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(results);
         })
         .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
             res.json(err);
         });
 });
 
+
+app.post('/v1/ngos', function(req, res) {
+    var options = _.pick(req.body, ['ngoname', 'fundinglimit', 'category']);
+    logger.info('Options =>', options);
+    ngoService.createNGO(options)
+        .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(results);
+        })
+        .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(err);
+        });
+});
+
+app.post('/v1/register', function(req, res) {
+    var options = _.pick(req.body, ['userType', 'username','password']);
+    logger.info('Options =>', options);
+    ngoService.registerUser(options)
+        .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(results);
+        })
+        .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(err);
+        });
+});
+
+
+app.post('/v1/login',function(req,res){
+    var options= _.pick(req.body,['username','password']);
+    logger.info(options);
+    ngoService.loginUser(options)
+        .then(function(results) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            console.log('results at tend'+results);
+            res.json(results);
+        })
+        .catch(function(err) {
+            res.setHeader("Access-Control-Allow-Origin","*");
+            res.json(err);
+        });
+});
+
+app.post('/v1/interests',function(req,res){
+    var options= _.pick(req.body,['studentid','ngoid']);
+    logger.info('option==>'+options);
+   // ngoService.addIntrests(options);
+});
 
 module.exports = app;
