@@ -3,11 +3,28 @@ myapp.controller('schoolController',['$scope','paymyService','$state','$ionicPop
       
     $scope.save = function(){
         paymyService.saveSchoolStudent($scope.content).then(function(response){
-              $state.go("app.studentDashboard");
+              $state.go("app.schoolDashboard");
               
         },function(response){            
             $scope.showAlert("student registration failed");
         })
+    }
+    $scope.studentlist = [ {
+      "id": 3,
+      "firstname": "Senthilkumar1",
+      "lastname": "Vaithiyanathan",
+      "city": "Chennai",
+      "verified": "N",
+      "picture": "http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png"
+    }];
+    $scope.loadStudentsDetails = function(){
+        paymyService.loadrecipients().then(function(response){
+              
+              
+        },function(response){            
+            $scope.showAlert("student listing failed");
+        })
+        
     }
     $scope.showContent = function($fileContent){
         $scope.content = $fileContent;
