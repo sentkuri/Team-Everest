@@ -5,7 +5,7 @@ var dbUtil = require('./DbUtil');
 
 
 var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from receipient r';
-var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
+var GET_RECIPIENTSBYID=' select * from receipient r LEFT JOIN family f ON r.id = f.receipientid ';
 var INSERT_RECIPIENT='INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture) values ' +
     '(:firstname, :lastname, :email, :contactnumber, :address_line1, :address_line2, :city, :state, :pincode, :verified,:moneyrequired,:singleparent,:marks,:picture)';
 var PREFIXES = {
@@ -97,7 +97,7 @@ function getRecipientByIdQuery(options){
 
     if (!_.isUndefined(options.id)) {
         query += "where  r.id = :id";
-        query += " and r.id = f.receipientid";
+        //query += " and r.id = f.receipientid";
     }
     return query;
 }
