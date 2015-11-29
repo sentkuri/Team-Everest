@@ -76,10 +76,11 @@ app.get('/v1/recipients/:id', function(req, res) {
 });
 
 
-
 app.post('/v1/recipients', function(req, res) {
+
     var options = _.pick(req.body, ['firstname', 'lastname', 'email','contactnumber','address_line1','address_line2','city','state','pincode','verified','moneyrequired','singleparent','marks','picture']);
     logger.info('Options =>', options);
+
     RecipientService.createReceipient(options)
         .then(function(results) {
             res.setHeader("Access-Control-Allow-Origin","*");
@@ -91,6 +92,24 @@ app.post('/v1/recipients', function(req, res) {
         });
 });
 
+
+app.post('/v1/recipients/batch', function(req, res) {
+    req.body.forEach(function (entry) {
+        var options = _.pick(entry, ['firstname', 'lastname', 'email', 'contactnumber', 'address_line1', 'address_line2', 'city', 'state', 'pincode', 'verified', 'moneyrequired', 'singleparent', 'marks', 'picture']);
+        logger.info('Options =>', options);
+
+        RecipientService.createReceipient(options)
+            .then(function (results) {
+              //  res.setHeader("Access-Control-Allow-Origin", "*");
+              //  res.json(results);
+            })
+            .catch(function (err) {
+             //   res.setHeader("Access-Control-Allow-Origin", "*");
+              //  res.json(err);
+            });
+    });
+    res.json({success:true});
+});
 
 app.post('/v1/ngos', function(req, res) {
     var options = _.pick(req.body, ['ngoname', 'fundinglimit', 'category']);
