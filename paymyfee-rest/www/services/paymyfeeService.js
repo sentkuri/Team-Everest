@@ -1,6 +1,7 @@
     var paymyServiceModule = angular.module('paymyServiceModule', [])
     paymyServiceModule.service('paymyService', function ($q, $location, $window,$http) {    
-        this.serverURLPrefix="http://192.168.116.255:3000/v1/";
+        //this.serverURLPrefix="http://192.168.116.255:3000/v1/";
+        this.serverURLPrefix= = $location.protocol()+'://'+$window.location.host+':3000/v1/';  
         $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
          $http.defaults.headers.post['dataType'] = 'json';
         this.loadrecipients = function(){
