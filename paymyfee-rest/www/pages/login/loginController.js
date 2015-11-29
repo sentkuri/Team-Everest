@@ -8,7 +8,7 @@ angular.module('loginModule', ["paymyServiceModule","ionic"])
     }
     $scope.login = function(){        
         paymyService.login($scope.data).then(function(response){
-              $state.go("app.studentRegister");
+              $state.go("app.studentDashboard");
               
         },function(response){            
             $scope.showAlert("Username/password combination is wrong");

@@ -12,7 +12,7 @@
                         url: url
                         }).then(function successCallback(response) {
                             console.log(response);
-                            alert(response);
+                            //alert(response);
                             deferred.resolve(respone);
                         }, function errorCallback(response) {
                             console.log(response);
@@ -32,7 +32,7 @@
                         headers: { "Content-Type": "application/json" }
                         }).then(function successCallback(response) {
                             console.log(response);
-                            alert(response);
+                           // alert(response);
                             deferred.resolve(response);
                         }, function errorCallback(response) {
                             console.log(response);
