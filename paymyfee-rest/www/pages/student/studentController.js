@@ -5,7 +5,7 @@ angular.module('studentModule', ["paymyServiceModule","ionic"])
         {"firstname":"Senthilkumar","lastname":"Vaithiyanathan","email":"sendmailtosenthil@gmail.com","contactnumber":"8940059376","address_line1":"L&T Eden park","address_line2":"Siruseri","city":"Chennai","area":null,"state":"Tamilnadu","pincode":"603103","verified":"N","moneyrequired":25000,"singleparent":"Y","marks":90,"picture":"http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png"};    
         
     $scope.data = 
-        {"firstname":"","lastname":"","email":"","contactnumber":"","address_line1":"","address_line2":"","city":"","area":null,"state":"","pincode":"","verified":"","moneyrequired":,"singleparent":"","marks":90,"picture":""};        
+        {"firstname":"","lastname":"","email":"","contactnumber":"","address_line1":"","address_line2":"","city":"","area":null,"state":"","pincode":"","verified":"","moneyrequired":0,"singleparent":"","marks":90,"picture":""};        
     $scope.save = function(){
         paymyService.saveStudent($scope.data).then(function(response){
               $state.go("app.studentDashboard");
