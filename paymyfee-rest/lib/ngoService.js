@@ -8,10 +8,10 @@ var GET_RECIPIENTS = ' select id,firstname,lastname,city,verified,picture from r
 var GET_RECIPIENTSBYID='select * from receipient r,family f   ';
 var INSERT_NGO='INSERT INTO ngo (ngoname, fundinglimit, category) values (:ngoname, :fundinglimit, :category)';
 var REGISTER_USER='insert into user(userType,username,password) values(:userType,:username,:password)';
-var LOGIN_USER='select userType from user where username=:username and password=:password';
+var LOGIN_USER='select userid from user where username=:username and password=:password';
 var PREFIXES = {
     receipient: "r",
-    user:"u"
+    user:"user"
 };
 
 
@@ -32,8 +32,12 @@ function loginUser(dbcp, options) {
         dbUtil.executeQuery(dbcp, LOGIN_USER, options)
             .then(function(results) {
                 console.log('ans came');
+                console.log('results are'+ JSON.stringify(results ) );
+                console.log('------------------------------------------');
+                console.log('Sent:'+ _.pluck(results, PREFIXES.user));
+                console.log('------------------------------------------');
               //  res.json(results);
-                resolve( _.pluck(rows, PREFIXES.user));
+                resolve( _.pluck(results, PREFIXES.user));
             })
             .catch(function(err) {
                 reject(err);
