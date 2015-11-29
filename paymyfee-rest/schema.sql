@@ -101,3 +101,24 @@ create table interestedTable (
 );
 
 
+INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Senthilkumar', 'Vaithiyanathan', 'sendmailtosenthil@gmail.com','8940059376','L&T Eden park', 'Siruseri', 'Chennai', 'Tamilnadu', '603103', 'N',25000,'Y',90,"http://thumb9.shutterstock.com/thumb_small/1294/104909726/stock-photo-casual-student-holding-backpack-and-headphones-isolated-over-white-104909726.jpg");
+
+ 
+ INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Muthukumar', 'Sundararajan', 'sendmailtomuthu@gmail.com','9987678989','ABlock', 'Pallavaram', 'Chennai', 'Tamilnadu', '603102', 'N',75000,'N',95,"http://utm.toronto.edu/sites/files/default/public/shared/registrar/images/samsmall.png");
+ 
+ 
+ INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Siva', 'Lord', 'sendmailtosiva@gmail.com','9879087623','Ray street', 'JP area', 'Madurai', 'Tamilnadu', '603102', 'N',55000,'N',55,"https://media.licdn.com/mpr/mpr/shrink_100_100/p/8/005/085/179/21348f3.jpg");
+ 
+ 
+ 
+ INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Hari', 'Kan', 'sendmailtohari@gmail.com','9079087623','Ray Lane', 'JP arena', 'Coimbatore', 'Tamilnadu', '603101', 'Y',50000,'N',85,"http://www.sbs.com.au/news/sites/sbs.com.au.news/files/styles/thumb_small/public/apple_student_still.jpg?itok=1foJGAQa");
+ 
+ INSERT INTO receipient (firstname, lastname, email, contactnumber, address_line1, address_line2, city, state, pincode, verified,moneyrequired,singleparent,marks,picture)
+ VALUES ('Sandhya', 'sai', 'sendmailtosandyi@gmail.com','9016087623','Riy puram', 'JPks arena', 'Sivakasi', 'Tamilnadu', '603109', 'Y',75000,'N',65," http://thumb7.shutterstock.com/thumb_small/817606/156093551/stock-photo-a-smiling-female-student-holding-books-isolated-on-white-background-156093551.jpg");
+ 
+ 
+
