@@ -1,7 +1,7 @@
     var paymyServiceModule = angular.module('paymyServiceModule', [])
     paymyServiceModule.service('paymyService', function ($q, $location, $window,$http) {    
         //this.serverURLPrefix="http://192.168.116.255:3000/v1/";
-        this.serverURLPrefix= = $location.protocol()+'://'+$window.location.host+':3000/v1/';  
+        this.serverURLPrefix = $location.protocol()+'://'+$window.location.host+'/v1/';  
         $http.defaults.headers.common['Access-Control-Allow-Origin'] = '*';
          $http.defaults.headers.post['dataType'] = 'json';
         this.loadrecipients = function(){
@@ -60,5 +60,30 @@
                             deferred.reject(response);
                         });
                 return deferred.promise;  
-        }
+        };
+        
+        this.saveStudent = function(data){
+            var deferred = $q.defer(); 
+                    var url= this.serverURLPrefix+"recipients";              
+                     $http({
+                        method: 'POST',
+                        data:  JSON.stringify(data),
+                        dataType: 'json', 
+                        crossDomain:true,
+                        headers: { "Content-Type": "application/json" },
+                        url: url
+                        }).then(function successCallback(response) {
+                            console.log(response);
+                            alert("Accept");
+                            deferred.resolve(response);
+                        }, function errorCallback(response) {
+                            console.log(response);
+                              alert("Reject");
+                            deferred.reject(response);
+                        });
+                return deferred.promise;  
+        };
+        
+        
+        
     });

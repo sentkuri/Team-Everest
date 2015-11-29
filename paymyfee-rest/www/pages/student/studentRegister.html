@@ -1,5 +1,6 @@
 <ion-view title="Login">
     <ion-content padding="true">
+    <div  ng-controller="studentController">
     <div class="card">
         <div class="item">
              <div class="list">
@@ -86,12 +87,13 @@
             
             
             
-            <button class="button button-block button-positive">
+            <button class="button button-block button-positive" ng-click="save();">
                 Save
             </button>
             <button class="button button-block button-positive">
                 Cancel
             </button>           
+        </div>
         </div>
     </ion-content>	
 </ion-view>
