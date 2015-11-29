@@ -23,6 +23,30 @@ module.exports = function(dbcp) {
 
 
 
+function pushNotification(options) {
+    console.log('called noti');
+    var Client = require('node-rest-client').Client;
+
+    var client = new Client();
+
+    // set content-type header and data as json in args parameter
+    var args = {
+        data: { "channels": ["PayMyFee"],"data": {
+            "alert": "A new student looking for Education Assistance. Tap here to view the details of "+options.firstname+" from "+options.city}
+        },
+        headers:{"Content-Type": "application/json",
+            "X-Parse-Application-Id": "wnM1uE4ZoQsdHA7NZYF0TPDVuM259eAEnWMaaZkA",
+            "X-Parse-REST-API-Key":"a3Nwz1kxgWF5Im9zj5zKpUwMHGiAziTu3wAi6cjL"}
+    };
+
+    client.post("https://api.parse.com/1/push", args, function(data,response) {
+        // parsed response body as js object
+        console.log(data);
+        // raw response
+        console.log(response);
+    });
+}
+
 function createReceipient(dbcp, options) {
 
     var orderReqId = 0;
@@ -31,6 +55,7 @@ function createReceipient(dbcp, options) {
     return new Promise(function(resolve, reject) {
         dbUtil.executeQuery(dbcp, INSERT_RECIPIENT, options)
             .then(function(results) {
+                pushNotification(options);
                 res.json(results);
             })
 

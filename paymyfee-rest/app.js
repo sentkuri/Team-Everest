@@ -3,7 +3,8 @@ var _ = require('lodash');
 var express = require('express');
 var app = express();
 var bodyParser = require('body-parser');
-
+var http = require('http');
+var url = require('url');
 var logger = require('./Logger');
 var config = require('./config');
 var Err = require('./lib/Err');
@@ -58,7 +59,6 @@ app.get('/v1/recipients', function(req, res) {
 });
 
 
-
 app.get('/v1/recipients/:id', function(req, res) {
     var options = _.pick(req.params,['id']);
     logger.info('Options =>', options);
@@ -83,6 +83,8 @@ app.post('/v1/recipients', function(req, res) {
 
     RecipientService.createReceipient(options)
         .then(function(results) {
+            console.log('Hiiii');
+
             res.setHeader("Access-Control-Allow-Origin","*");
             res.json(results);
         })
@@ -160,5 +162,6 @@ app.post('/v1/interests',function(req,res){
     logger.info('option==>'+options);
    // ngoService.addIntrests(options);
 });
+
 
 module.exports = app;
