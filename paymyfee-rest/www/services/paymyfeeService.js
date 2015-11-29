@@ -52,11 +52,11 @@
                         url: url
                         }).then(function successCallback(response) {
                             console.log(response);
-                            alert("Accept");
+                            //alert("Accept");
                             deferred.resolve(response);
                         }, function errorCallback(response) {
                             console.log(response);
-                              alert("Reject");
+                            //alert("Reject");
                             deferred.reject(response);
                         });
                 return deferred.promise;  
