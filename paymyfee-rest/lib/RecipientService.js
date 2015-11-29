@@ -58,6 +58,7 @@ function getAllRecipients(dbcp, options) {
 }
 
 function getRecipientByID(dbcp, options) {
+    console.log('options is'+options   );
     return new Promise(function(resolve, reject) {
         dbUtil.executeQuery(dbcp, getRecipientByIdQuery(options), options)
             .then(function(rows) {
@@ -73,18 +74,18 @@ function getRecipientsQuery(options) {
 
     var query = GET_RECIPIENTS;
 console.log(options+' is options');
-    if (!_.isUndefined(options.singleparent||options.moneyrequired||options.city||options.marks)) {
+    if (!_.isUndefined(options.singleparent) || !_.isUndefined(options.moneyrequired) || !_.isUndefined(options.city) || !_.isUndefined(options.marks)) {
         query += ' where ';
     }
     if (!_.isUndefined(options.singleparent)) {
-        query += " r.singleparent = :singleparent";
+        query += " lower(r.singleparent) = lower(:singleparent)";
 
     }
     if (!_.isUndefined(options.moneyrequired)) {
         query += " and r.moneyrequired <= :moneyrequired";
     }
     if (!_.isUndefined(options.city)) {
-        query += " and r.city = :city";
+        query += " and lower(r.city) = lower(:city)";
     }
     if (!_.isUndefined(options.marks)) {
         query += " and r.marks > :marks";

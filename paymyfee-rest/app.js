@@ -46,7 +46,7 @@ app.get('/students', function(req, res){
 app.get('/v1/recipients', function(req, res) {
     var options = _.pick(req.query, ['singleparent','moneyrequired','marks','city']);
     logger.info('Options =>', options); 
-    RecipientService.getRecipientById(options)
+    RecipientService.getRecipients(options)
         .then(function(recipient) {
             res.setHeader("Access-Control-Allow-Origin","*");
             res.json({"students":recipient});
