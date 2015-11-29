@@ -84,6 +84,28 @@
                 return deferred.promise;  
         };
         
+        this.saveSchoolStudent = function(data){
+            var deferred = $q.defer(); 
+                    var url= this.serverURLPrefix+"recipients/batch";              
+                     $http({
+                        method: 'POST',
+                        data:  data,
+                        dataType: 'json', 
+                        crossDomain:true,
+                        headers: { "Content-Type": "application/json" },
+                        url: url
+                        }).then(function successCallback(response) {
+                            console.log(response);
+                            //alert("Accept");
+                            deferred.resolve(response);
+                        }, function errorCallback(response) {
+                            console.log(response);
+                              //alert("Reject");
+                            deferred.reject(response);
+                        });
+                return deferred.promise;  
+        };
+        
         
         
     });

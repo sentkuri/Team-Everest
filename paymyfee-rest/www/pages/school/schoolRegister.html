@@ -1,0 +1,48 @@
+<ion-view title="School">
+    <ion-content padding="true">
+    <div  ng-controller="schoolController">    
+        <div class="card">
+            <div class="item">    
+                <h1>Provide the student data file</h1>
+                <input type="file" on-read-file="showContent($fileContent)" />                
+                <button class="button button-block button-positive" ng-click="save();">
+                    Save
+                </button>
+                <button class="button button-block button-positive">
+                    Cancel
+                </button>           
+            </div>
+        </div>
+        <div class="card">
+            <div class="list">
+                <a class="item item-avatar" href="#">
+                  <img src="http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png">
+                  <h2>Venkman</h2>
+                  <p>Back off, man. I'm a scientist.</p>
+                </a>
+                
+                <a class="item item-avatar" href="#">
+                  <img src="http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png">
+                  <h2>Venkman</h2>
+                  <p>Back off, man. I'm a scientist.</p>
+                </a>
+                
+                <a class="item item-avatar" href="#">
+                  <img src="http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png">
+                  <h2>Venkman</h2>
+                  <p>Back off, man. I'm a scientist.</p>
+                </a>
+                
+                <a class="item item-avatar" href="#">
+                  <img src="http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png">
+                  <h2>Venkman</h2>
+                  <p>Back off, man. I'm a scientist.</p>
+                </a>
+                
+            </div>
+            
+          
+    </div>        
+    </ion-content>	
+</ion-view>
+

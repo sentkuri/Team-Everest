@@ -1,5 +1,5 @@
-angular.module('studentModule', ["paymyServiceModule","ionic"])
-.controller('studentController',['$scope','paymyService','$state','$ionicPopup', function($scope,paymyService,$state,$ionicPopup) {
+var myapp = angular.module('studentModule', ["paymyServiceModule","ionic"]);
+myapp.controller('studentController',['$scope','paymyService','$state','$ionicPopup', function($scope,paymyService,$state,$ionicPopup) {
 
     $scope.data = 
         {"firstname":"Senthilkumar","lastname":"Vaithiyanathan","email":"sendmailtosenthil@gmail.com","contactnumber":"8940059376","address_line1":"L&T Eden park","address_line2":"Siruseri","city":"Chennai","area":null,"state":"Tamilnadu","pincode":"603103","verified":"N","moneyrequired":25000,"singleparent":"Y","marks":90,"picture":"http://www.studentnoodles.co.uk/wp-content/uploads/2014/03/avatar.png"};    
@@ -22,6 +22,9 @@ angular.module('studentModule', ["paymyServiceModule","ionic"])
             $scope.showAlert("Username/password combination is wrong");
         })
     };
+    $scope.showContent = function($fileContent){
+        $scope.content = $fileContent;
+    };
     
     $scope.register = function(){              
         paymyService.register($scope.data).then(function(response){
@@ -40,5 +43,29 @@ angular.module('studentModule', ["paymyServiceModule","ionic"])
          console.log('Thank you for not eating my delicious ice cream cone');
        });
        };
+       
     
 }]);
+
+
+myapp.directive('onReadFile', function ($parse) {
+	return {
+		restrict: 'A',
+		scope: false,
+		link: function(scope, element, attrs) {
+            var fn = $parse(attrs.onReadFile);
+            
+			element.on('change', function(onChangeEvent) {
+				var reader = new FileReader();
+                
+				reader.onload = function(onLoadEvent) {
+					scope.$apply(function() {
+						fn(scope, {$fileContent:onLoadEvent.target.result});
+					});
+				};
+
+				reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
+			});
+		}
+	};
+});
